@@ -17,6 +17,7 @@
             <li class="">Option2</li>
             <li class="">Option3</li>
         </ul>
+        <div class="" v-if="show">{{ greeting }}</div>
     </div>
 </template>
 
@@ -31,16 +32,21 @@ export default {
         maxLength: {
             type: Number,
             required: true
+        },
+        show: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
         return {
-            title: "Hello World",
+            title: "World",
             firstName: "",
             secondName: "",
             admin: false,
             shouldShowDropdown: false,
-            password: ""
+            password: "",
+            greeting: "",
         }
     },
     computed: {

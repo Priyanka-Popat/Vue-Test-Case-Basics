@@ -9,7 +9,7 @@ describe('Form', () => {
         const wrapper = shallowMount(Form);
         let header = wrapper.find('.htmlClass h1');
         expect(header.exists()).toBe(true);
-        expect(header.text()).toBe("Hello World");
+        expect(header.text()).toBe("World");
     })
     // find and exist used when u are not sure elemt is in dom or not
     // find method finds elemnets if doesnt exist returns empty wrapper 
@@ -81,5 +81,19 @@ describe('Form', () => {
         expect(wrapper.html()).toContain('Password must be at least 8 and max 10 characters.');
     })
 
-    // using setprops()
+    // using setprops() to update props change its value
+    test('render greeting when show = true', async () => {
+        const wrapper = mount(Form, {
+            props: { show: true }
+        });
+        // setting data in greeting can also do it thru data() in mount
+        await wrapper.setData({ greeting: 'Hello' });
+
+        expect(wrapper.html()).toContain('Hello');
+        // using await to make sure that dom has been updated 
+        await wrapper.setProps({ show: false });
+
+        expect(wrapper.html()).not.toContain('Hello');
+    });
+
 })
